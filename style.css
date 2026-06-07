@@ -1,0 +1,46 @@
+body{
+font-family:Arial,sans-serif;
+background:#f4f4f4;
+margin:0;
+}
+
+header{
+background:#ff6600;
+color:#fff;
+padding:20px;
+text-align:center;
+}
+
+.hero{
+padding:50px;
+text-align:center;
+background:#fff;
+}
+
+.card{
+background:#fff;
+padding:20px;
+margin:20px;
+border-radius:12px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+}
+
+button{
+background:#ff6600;
+color:#fff;
+border:none;
+padding:12px 20px;
+cursor:pointer;
+}
+
+#map{
+height:400px;
+margin:20px;
+border-radius:12px;
+}

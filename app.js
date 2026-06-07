@@ -1,5 +1,16 @@
 import { app } from "./firebase.js";
 
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const auth = getAuth(app);
+signup(), login(), logout(),
 function calculateFare(){
 
 let km =

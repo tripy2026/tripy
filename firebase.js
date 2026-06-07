@@ -1,21 +1,25 @@
+import { app } from "./firebase.js";
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 const firebaseConfig = {
 
-apiKey:"YOUR_API_KEY",
+apiKey: "AIzaSyCM_wNzASy9qwcWGUfRo_inQzJtSG5TadA",
 
-authDomain:"YOUR_DOMAIN",
+authDomain: "tripy-4d596.firebaseapp.com",
 
-projectId:"YOUR_PROJECT",
+projectId: "tripy-4d596",
 
-storageBucket:"YOUR_BUCKET",
+storageBucket: "tripy-4d596.firebasestorage.app",
 
-messagingSenderId:"YOUR_SENDER",
+messagingSenderId: "38146514812",
 
-appId:"YOUR_APP_ID"
+appId: "1:38146514812:web:90582eed0bea0f69e50ef9",
+
+measurementId: "G-7L4YKH4TCZ"
 
 };
 
-export const app =
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+export { app };

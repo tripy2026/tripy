@@ -182,7 +182,44 @@ font-weight:bold;
 
 </div>
 </div>
+<div class="container" id="dashboard" style="display:none;">
 
+<h2>👤 User Dashboard</h2>
+
+<div style="background:#f8f8f8;padding:20px;border-radius:10px;">
+
+<h3>🚖 Welcome to TRIPY</h3>
+
+<p><b>Email:</b> <span id="userEmail"></span></p>
+
+<p><b>Status:</b> Active User ✅</p>
+
+</div>
+
+<br>
+
+<button onclick="logout()">Logout</button>
+<div class="container" id="dashboard" style="display:none;">
+
+<h2>👤 User Dashboard</h2>
+
+<div style="background:#f8f8f8;padding:20px;border-radius:10px;">
+
+<h3>🚖 Welcome to TRIPY</h3>
+
+<p><b>Email:</b> <span id="userEmail"></span></p>
+
+<p><b>Status:</b> Active User ✅</p>
+
+</div>
+
+<br>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+  
+</div>
 <div class="container" id="booking">
 <h2>📍 Ride Booking Form</h2>
 
@@ -336,7 +373,22 @@ document.getElementById("msg").innerHTML =
 });
 
 }
+onAuthStateChanged(auth, (user) => {
 
+if(user){
+
+document.getElementById("dashboard").style.display = "block";
+
+document.getElementById("userEmail").innerText =
+user.email;
+
+}else{
+
+document.getElementById("dashboard").style.display = "none";
+
+}
+
+});
 </script>
 </body>
 </html>

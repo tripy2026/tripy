@@ -138,16 +138,14 @@ onAuthStateChanged(auth, (user) => {
 
 if(user){
 
+document.getElementById("dashboard").style.display = "block";
+
 document.getElementById("userEmail").innerText =
 user.email;
 
-document.getElementById("dashboard").style.display =
-"block";
-
 }else{
 
-document.getElementById("dashboard").style.display =
-"none";
+document.getElementById("dashboard").style.display = "none";
 
 }
 

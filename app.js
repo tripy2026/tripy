@@ -10,7 +10,54 @@ import {
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const auth = getAuth(app);
-signup(), login(), logout(),
+window.signup = async function() {
+
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+
+try{
+await createUserWithEmailAndPassword(auth,email,password);
+
+document.getElementById("msg").innerHTML =
+"✅ Signup Successful";
+
+}catch(error){
+
+document.getElementById("msg").innerHTML =
+error.message;
+
+}
+
+}
+
+window.login = async function() {
+
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+
+try{
+await signInWithEmailAndPassword(auth,email,password);
+
+document.getElementById("msg").innerHTML =
+"✅ Login Successful";
+
+}catch(error){
+
+document.getElementById("msg").innerHTML =
+error.message;
+
+}
+
+}
+
+window.logout = async function() {
+
+await signOut(auth);
+
+document.getElementById("msg").innerHTML =
+"✅ Logout Successful";
+
+}
 function calculateFare(){
 
 let km =
@@ -87,3 +134,21 @@ window.open(
 
 window.bookRide =
 bookRide;
+onAuthStateChanged(auth, (user) => {
+
+if(user){
+
+document.getElementById("userEmail").innerText =
+user.email;
+
+document.getElementById("dashboard").style.display =
+"block";
+
+}else{
+
+document.getElementById("dashboard").style.display =
+"none";
+
+}
+
+});

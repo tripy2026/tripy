@@ -10,143 +10,171 @@ import {
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const auth = getAuth(app);
-window.signup = async function() {
 
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
+// Signup
 
-try{
-await createUserWithEmailAndPassword(auth,email,password);
+window.signup = async function () {
 
-document.getElementById("msg").innerHTML =
-"✅ Signup Successful";
+  const email = document.getElementById("email").value;
 
-}catch(error){
+  const password = document.getElementById("password").value;
 
-document.getElementById("msg").innerHTML =
-error.message;
+  try {
 
-}
+    await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-}
+    document.getElementById("msg").innerHTML =
+      "✅ Signup Successful";
 
-window.login = async function() {
+  } catch (error) {
 
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
+    document.getElementById("msg").innerHTML =
+      error.message;
 
-try{
-await signInWithEmailAndPassword(auth,email,password);
+  }
 
-document.getElementById("msg").innerHTML =
-"✅ Login Successful";
+};
 
-}catch(error){
+// Login
 
-document.getElementById("msg").innerHTML =
-error.message;
+window.login = async function () {
 
-}
+  const email = document.getElementById("email").value;
 
-}
+  const password = document.getElementById("password").value;
 
-window.logout = async function() {
+  try {
 
-await signOut(auth);
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-document.getElementById("msg").innerHTML =
-"✅ Logout Successful";
+    document.getElementById("msg").innerHTML =
+      "✅ Login Successful";
 
-}
-function calculateFare(){
+  } catch (error) {
 
-let km =
-document.getElementById("km").value;
+    document.getElementById("msg").innerHTML =
+      error.message;
 
-let fare =
-20 + (km*8);
+  }
 
-document.getElementById("fare")
-.innerHTML =
-"Estimated Fare ₹" + fare;
+};
 
-}
+// Logout
 
-window.calculateFare =
-calculateFare;
+window.logout = async function () {
 
-function getLocation(){
+  await signOut(auth);
 
-navigator.geolocation
-.getCurrentPosition(
+  document.getElementById("msg").innerHTML =
+    "✅ Logout Successful";
 
-(position)=>{
+};
 
-document.getElementById(
-"location"
-).innerHTML =
+// Dashboard
 
-position.coords.latitude +
-", " +
-position.coords.longitude;
+onAuthStateChanged(auth, (user) => {
+
+  if (user) {
+
+    document.getElementById("dashboard").style.display =
+      "block";
+
+    document.getElementById("userEmail").innerText =
+      user.email;
+
+  } else {
+
+    document.getElementById("dashboard").style.display =
+      "none";
+
+  }
 
 });
 
-}
+// Fare Calculator
 
-window.getLocation =
-getLocation;
+window.calculateFare = function () {
 
-let map =
-L.map('map')
-.setView([25.4484,78.5685],13);
+  let km =
+    document.getElementById("km").value;
+
+  let fare =
+    20 + (km * 8);
+
+  document.getElementById("fare").innerHTML =
+    "Estimated Fare ₹" + fare;
+
+};
+
+// Current Location
+
+window.getLocation = function () {
+
+  navigator.geolocation.getCurrentPosition(
+
+    (position) => {
+
+      document.getElementById("location").innerHTML =
+
+        position.coords.latitude +
+        ", " +
+        position.coords.longitude;
+
+    }
+
+  );
+
+};
+
+// Map
+
+const map =
+  L.map("map").setView(
+    [25.4484, 78.5685],
+    13
+  );
 
 L.tileLayer(
-'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+  "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+  {
+    maxZoom: 19
+  }
 ).addTo(map);
 
-function bookRide(){
+// Ride Booking
 
-let pickup =
-document.getElementById(
-"pickup"
-).value;
+window.bookRide = function () {
 
-let drop =
-document.getElementById(
-"drop"
-).value;
+  let pickup =
+    document.getElementById("pickup").value;
 
-let msg =
+  let drop =
+    document.getElementById("drop").value;
 
-`Tripy Ride Booking
+  let msg =
+
+`🚖 TRIPY Ride Booking
 
 Pickup: ${pickup}
 
 Drop: ${drop}`;
 
-window.open(
-"https://wa.me/919236764481?text="
-+ encodeURIComponent(msg)
-);
+  window.open(
 
-}
+    "https://wa.me/919236764481?text=" +
 
-window.bookRide =
-bookRide;
-onAuthStateChanged(auth, (user) => {
+    encodeURIComponent(msg),
 
-if(user){
+    "_blank"
 
-document.getElementById("dashboard").style.display = "block";
+  );
 
-document.getElementById("userEmail").innerText =
-user.email;
-
-}else{
-
-document.getElementById("dashboard").style.display = "none";
-
-}
-
-});
+};

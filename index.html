@@ -61,6 +61,72 @@ Calculate
 <p id="fare"></p>
 
 </section>
+<section class="card">
+
+<h2>🔐 Login / Signup</h2>
+
+<input
+type="email"
+id="email"
+placeholder="Enter Email">
+
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
+
+<button onclick="signup()">
+📝 Signup
+</button>
+
+<button onclick="login()">
+🔑 Login
+</button>
+
+<p id="msg"></p>
+
+</section>
+
+<section class="card" id="dashboard" style="display:none;">
+
+<h2>👤 User Dashboard</h2>
+
+<p>
+<b>Email:</b>
+<span id="userEmail"></span>
+</p>
+
+<p>
+<b>Status:</b>
+Active User ✅
+</p>
+
+<button onclick="logout()">
+🚪 Logout
+</button>
+
+</section>
+<section class="card">
+
+<h2>🔐 Login / Signup</h2>
+
+<input
+type="email"
+id="email"
+placeholder="Email">
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+<button onclick="signup()">Signup</button>
+
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+
+</section>
 
 <section class="card">
 
@@ -73,11 +139,21 @@ Calculate
 <p id="location"></p>
 
 </section>
+<section class="card" id="dashboard" style="display:none;">
+
+<h2>👤 User Dashboard</h2>
+
+<p><b>Email:</b> <span id="userEmail"></span></p>
+
+<p><b>Status:</b> Active User ✅</p>
+
+<button onclick="logout()">Logout</button>
+
+</section>
 
 <div id="map"></div>
 
-<script src="firebase.js" type="module"></script>
-<script src="app.js" type="module"></script>
+<script src="firebase.js" type="module"></script
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script type="module" src="app.js"></script>

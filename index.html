@@ -3,140 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRIPY - Bike Taxi Service</title>
+    <title>Tripy - Village-Todi Fatehpur Bike Service</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f5f5f7;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            color: #111;
-            margin-bottom: 5px;
-        }
-
-        header p {
-            color: #666;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 500px;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            padding: 25px;
-            margin-bottom: 20px;
-        }
-
-        .section-title {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        input[type="text"]:focus, input[type="number"]:focus {
-            border-color: #ff6600;
-        }
-
-        button {
-            width: 100%;
-            padding: 14px;
-            background-color: #ff6600;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        button:hover {
-            background-color: #e65c00;
-        }
-
-        .result-text {
-            margin-top: 15px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: #222;
-            text-align: center;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        :root { --primary: #25D366; --yellow: #FFD600; --black: #000; --white: #fff; --gray: #f5f5f5; }
+        body { background: var(--white); color: var(--black); }
+        header { background: var(--white); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 28px; font-weight: 900; }
+        .logo span { background: var(--yellow); padding: 5px 10px; border-radius: 5px; }
+        .call-btn { background: var(--primary); color: var(--white); padding: 12px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=1000'); background-size: cover; padding: 80px 20px; text-align: center; color: var(--white); }
+        .hero h1 { font-size: 38px; margin-bottom: 10px; }
+        .hero p { font-size: 18px; margin-bottom: 25px; }
+        .floating-book-btn { position: fixed; bottom: 20px; right: 20px; background: var(--primary); color: var(--white); padding: 18px 25px; border-radius: 50px; font-size: 18px; font-weight: bold; text-decoration: none; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5); z-index: 1000; }
+        .info-box { display: flex; justify-content: center; gap: 20px; padding: 20px; background: var(--gray); flex-wrap: wrap; }
+        .info-item { text-align: center; padding: 15px 25px; }
+        .info-item h3 { font-size: 28px; }
+        .info-item p { font-size: 14px; color: #666; }
+        .services, .calculator-section { padding: 50px 20px; text-align: center; }
+        .services h2, .calculator-section h2 { font-size: 28px; margin-bottom: 30px; }
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .service-card { background: var(--white); border: 2px solid #eee; border-radius: 15px; padding: 25px; transition: 0.3s; }
+        .service-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-color: var(--yellow); }
+        .service-icon { font-size: 45px; margin-bottom: 10px; }
+        .service-card h3 { font-size: 20px; margin-bottom: 8px; }
+        .service-card p { font-size: 14px; color: #666; margin-bottom: 10px; }
+        .price-tag { background: var(--yellow); padding: 8px 15px; border-radius: 20px; font-weight: bold; display: inline-block; }
+        
+        /* CALCULATOR */
+        .calculator-box { max-width: 400px; margin: 0 auto; background: var(--gray); padding: 30px; border-radius: 15px; }
+        .calc-input { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 10px; font-size: 18px; margin-bottom: 15px; text-align: center; }
+        .calc-label { font-size: 16px; font-weight: bold; margin-bottom: 8px; display: block; text-align: left; }
+        .calc-note { font-size: 13px; color: #666; background: #fff; padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left; }
+        .calc-btn { background: var(--primary); color: var(--white); padding: 15px 30px; border: none; border-radius: 25px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; }
+        .result-box { background: var(--white); padding: 20px; border-radius: 10px; margin-top: 20px; display: none; border: 2px solid var(--primary); }
+        .result-box h3 { font-size: 28px; color: var(--primary); }
+        .result-details { font-size: 14px; color: #333; margin-top: 10px; text-align: left; line-height: 1.8; }
+        
+        .how-it-works { background: var(--gray); padding: 50px 20px; text-align: center; }
+        .steps { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 900px; margin: 20px auto 0; }
+        .step { flex: 1; min-width: 180px; }
+        .step-number { width: 45px; height: 45px; background: var(--primary); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; margin: 0 auto 12px; }
+        .booking-section { padding: 50px 20px; background: var(--white); text-align: center; display: none; }
+        .booking-form { max-width: 400px; margin: 0 auto; background: var(--gray); padding: 30px; border-radius: 15px; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+        .location-option { background: #e8f5e9; border: 2px solid var(--primary); padding: 15px; border-radius: 10px; margin-bottom: 15px; }
+        .location-option label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .location-option input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--primary); }
+        .location-hint { font-size: 12px; color: #666; background: #fff; padding: 10px; border-radius: 5px; margin-top: 10px; }
+        .submit-btn { background: var(--primary); color: var(--white); padding: 15px 30px; border: none; border-radius: 25px; font-size: 18px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
+        .close-form { background: #ff4444; color: white; padding: 10px 20px; border: none; border-radius: 20px; cursor: pointer; margin-top: 10px; width: 100%; }
+        footer { background: var(--black); color: var(--white); padding: 40px 20px; text-align: center; }
+        .footer-content h3 { font-size: 26px; margin-bottom: 15px; color: var(--yellow); }
+        .contact-info { font-size: 18px; margin-bottom: 12px; }
+        .contact-info a { color: var(--yellow); text-decoration: none; }
+        @media (max-width: 768px) { .hero h1 { font-size: 28px; } .call-btn { display: none; } .floating-book-btn { bottom: 15px; right: 15px; padding: 15px 20px; font-size: 16px; } }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🚖 TRIPY</h1>
-        <p>Bike Taxi • Parcel Delivery • Local Transport</p>
+        <div class="logo">🚑 <span>TRIPY</span></div>
+        <a href="tel:9236764481" class="call-btn">📞 कॉल करें</a>
     </header>
 
-    <div class="container">
-        <div class="section-title">🚖 Ride Booking</div>
-        
-        <div class="form-group">
-            <input type="text" placeholder="Customer Name" required>
-        </div>
-        <div class="form-group">
-            <input type="text" placeholder="Mobile Number" required>
-        </div>
-        <div class="form-group">
-            <input type="text" placeholder="Pickup Location" required>
-        </div>
-        <div class="form-group">
-            <input type="text" placeholder="Drop Location" required>
-        </div>
-        
-        <button type="button">Book Ride</button>
+    <section class="hero">
+        <h1>🚑 Tripy - Bike Service</h1>
+        <p>गांव-Todi Fatehpur में सबसे सस्ती बाइक सर्विस</p>
+    </section>
+
+    <div class="info-box">
+        <div class="info-item"><h3>₹4/km</h3><p>प्रति यात्री</p></div>
+        <div class="info-item"><h3>1 बैग फ्री</h3><p>फिर ₹1/km</p></div>
+        <div class="info-item"><h3>15 मिनट</h3><p>में पहुंचते हैं</p></div>
     </div>
 
-    <div class="container">
-        <div class="section-title">💰 Fare Calculator</div>
-        
-        <div class="form-group">
-            <input type="number" placeholder="Enter Distance (KM)" min="1" value="1">
+    <section class="services">
+        <h2>हमारी सेवाएं</h2>
+        <div class="service-grid">
+            <div class="service-card"><div class="service-icon">🏍️</div><h3>बाइक टैक्सी</h3><p>गांव में कहीं भी जाएं</p><div class="price-tag">₹4/km/Person</div></div>
+            <div class="service-card"><div class="service-icon">🏥</div><h3>इमरजेंसी</h3><p>डॉक्टर, अस्पताल</p><div class="price-tag">तुरंत सर्विस</div></div>
+            <div class="service-card"><div class="service-icon">🛒</div><h3>शॉपिंग</h3><p>बाजार, मॉल</p><div class="price-tag">₹4/km/Person</div></div>
+            <div class="service-card"><div class="service-icon">🚉</div><h3>स्टेशन</h3><p>बस/रेलवे स्टेशन</p><div class="price-tag">₹4/km/Person</div></div>
         </div>
-        
-        <button type="button">Calculate Fare</button>
-        <div class="result-text">Estimated Fare: ₹28</div>
-    </div>
+    </section>
 
-</body>
-</html>
+    <!-- CALCULATOR -->
+    <section class="calculator-section">
+        <h2>🧮 Fare Calculator</h2>
+        <div class="calculator-box">
+            <div class="calc-note">
+                <strong>💰 Rate:</strong><br>
+                - ₹4 प्रति km प्रति यात्री<br>
+                - 1 बैग फ्री<br>
+                - हर अतिरिक्त बैग ₹1/km
+            </div>
+            <div class="form-group">
+                <label class="calc-label">👥 कितने यात्री हैं?</label>
+                <input type="number" id="passengers" class="calc-input" value="1" min="1">
+            </div>
+            <div class="form-group">
+                <label class="calc-label">👜 कितने बैग हैं?</label>
+                <input type="number" id="bags" class="calc-input" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label class="calc-label">📏 कितने km जाना है?</label>
+                <input type="number" id="distance" class="calc-input" placeholder="10">
+            </div>
+            <button onclick="calculateFare()" class="calc-btn">🧮 Fare Calculate करें</button>
+            
+            <div class="result-box" id="resultBox">
+                <h3>💵 कुल Fare: ₹<span id="totalFare">0</span></h3>
+                <div class="result-details" id="fareDetails"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <h2>📱 कैसे बुक करें?</h2>
+        <div class="steps">
+            <div class="step"><div class="step-number">1</div><h3>WhatsApp</h3><p>Message करें</p></div>
+            <div class="step"><div class="step-number">2</div><h3>पता बताएं</h3><p>कहां से और कहां तक</p></div>
+            <div class="step"><div class="step-number">3</div><h3>बाइक आएगी</h3><p>15 मिनट में</p></div>
+        </div>
+    </section>
+
+    <section class="booking-section" id="bookingSection">
+        <div class="booking-form">
+            <h2>📱 बुक करें</h2>
+            <form id="bookingForm">
+                <div class="form-group"><label>👤 आपका नाम:</label><input type="text" id="name" placeholder="अपना नाम" required></div>
+                <div class="form-group"><label>📱 फोन नंबर:</label><input type="tel" id="phone" placeholder="मोबाइल नंबर" required></div>
+                <div class="location-option">
+                    <label><input type="checkbox" id="shareLocation">📍 Location भेजें</label>
+                    <div class="location-hint">✅ Check → WhatsApp → 📎 → Location</div>
+                </div>
+                <div class="form-group"><label>📍 कहां से:</label><input type="text" id="from" placeholder="पिकअप पता" required></div>
+                <div class="form-group"><label>🏁 कहां जाना है:</label><input type="text" id="to" placeholder="गंतव्य" required></div>
+                <div class="form-group"><label>💬 मैसेज:</label><textarea id="message" placeholder="कोई खास बात" rows="2"></textarea></div>
+                <button type="submit" class="submit-btn">💬 WhatsApp पर भेजें</button>
+                <button type="button" onclick="hideBooking()" class="close-form">✖ बंद करें</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3>🚑 Tripy</h3>
+            <p>📍 Village-Todi Fatehpur</p>
+            <p>📞 <a href="tel:9236764481">+91 9236764481</a></p>
+            <p style="margin-top:15px;color:#888;">सबसे सस्ती बाइक सर्विस</p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateFare() {
+            var passengers = parseInt(document.getElementById('passengers').value) || 1;
+            var bags = parseInt(document.getElementById('bags').value) || 0;
+            var distance = parseInt(document.getElementById('distance').value) || 0;
+            
+            // Rate: ₹4/km per person, 1 bag free, extra bag ₹1/km
+            var personFare = passengers * distance * 4;
+            var freeBags = 1;
+            var extraBags = Math.max(0, bags - freeBags);
+            var bagFare = extraBags * distance * 1;
+            var total = personFare + bagFare;
+            
+            var details = "";
+            details += "👥 यात्री: " + passengers + " × ₹4 × " + distance + "km = ₹" + personFare + "<br>";
+            if(extraBags > 0) {
+                details += "👜 अतिरिक्त बैग: " + extraBags + " × ₹1 × " + distance + "km = ₹" + bagFare + "<br>";
+            } else {
+                details += "👜 बैग: 2 बैग फ्री ✅<br>";
+            }
+            
+            document.get

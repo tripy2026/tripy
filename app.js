@@ -112,25 +112,35 @@ position.coords.longitude;
 
 }
 
-window.bookRide=function(){
+window.bookRide = function(){
 
-let pickup=
+let name =
+document.getElementById("customerName").value;
+
+let phone =
+document.getElementById("customerPhone").value;
+
+let pickup =
 document.getElementById("pickup").value;
 
-let drop=
+let drop =
 document.getElementById("drop").value;
 
-let msg=
+let msg =
 
-`TRIPY Ride Booking
+`🚖 TRIPY Ride Booking
 
-Pickup: ${pickup}
+👤 Customer Name: ${name}
 
-Drop: ${drop}`;
+📞 Mobile Number: ${phone}
+
+📍 Pickup: ${pickup}
+
+🏁 Drop: ${drop}`;
 
 window.open(
 
-"https://wa.me/919236764481?text="+
+"https://wa.me/919236764481?text=" +
 encodeURIComponent(msg),
 
 "_blank"
@@ -138,7 +148,6 @@ encodeURIComponent(msg),
 );
 
 }
-
 let map=L.map('map')
 .setView([25.4484,78.5685],13);
 

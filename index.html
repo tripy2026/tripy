@@ -1,127 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRIPY - Bike Taxi Service</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width,initial-scale=1.0">
+        body {
+            background-color: #f5f5f7;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
 
-<title>TRIPY</title>
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-<link rel="stylesheet"
-href="style.css">
+        header h1 {
+            font-size: 2.5rem;
+            color: #111;
+            margin-bottom: 5px;
+        }
 
-<link
-rel="stylesheet"
-href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+        header p {
+            color: #666;
+            font-size: 1rem;
+            font-weight: 500;
+        }
 
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #ff6600;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #e65c00;
+        }
+
+        .result-text {
+            margin-top: 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #222;
+            text-align: center;
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
+    <header>
+        <h1>🚖 TRIPY</h1>
+        <p>Bike Taxi • Parcel Delivery • Local Transport</p>
+    </header>
 
-<h1>🚖 TRIPY</h1>
+    <div class="container">
+        <div class="section-title">🚖 Ride Booking</div>
+        
+        <div class="form-group">
+            <input type="text" placeholder="Customer Name" required>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="Mobile Number" required>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="Pickup Location" required>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="Drop Location" required>
+        </div>
+        
+        <button type="button">Book Ride</button>
+    </div>
 
-<p>Fast • Safe • Affordable Bike Taxi Service</p>
-
-</header>
-
-<section class="hero">
-
-<h2>Book Your Ride Instantly</h2>
-
-<p>Bike Taxi • Parcel Delivery • Local Transport</p>
-
-</section>
-
-<section class="card">
-
-<h2>🚖 Ride Booking</h2>
-
-<input type="text"
-id="name"
-placeholder="Customer Name">
-
-<input type="tel"
-id="mobile"
-placeholder="Mobile Number">
-
-<input type="text"
-id="pickup"
-placeholder="Pickup Location">
-
-<input type="text"
-id="drop"
-placeholder="Drop Location">
-
-<button onclick="bookRide()">
-Book Ride
-</button>
-
-</section>
-
-<section class="card">
-
-<h2>🚖 Ride Booking</h2>
-
-<input type="text"
-id="pickup"
-placeholder="Pickup Location">
-
-<input type="text"
-id="drop"
-placeholder="Drop Location">
-
-<button onclick="bookRide()">
-Book Ride
-</button>
-
-</section>
-
-<section class="card">
-
-<h2>💰 Fare Calculator</h2>
-
-<input type="number"
-id="km"
-placeholder="Distance KM">
-
-<button onclick="calculateFare()">
-Calculate Fare
-</button>
-
-<p id="fare"></p>
-
-</section>
-
-<section class="card">
-
-<h2>📍 Current Location</h2>
-
-<button onclick="getLocation()">
-
-Detect Location
-
-</button>
-
-<p id="location"></p>
-
-</section>
-
-<div id="map"></div>
-
-<script src=
-"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-</script>
-
-<script type="module"
-src="./firebase.js">
-</script>
-
-<script type="module"
-src="./app.js">
-</script>
+    <div class="container">
+        <div class="section-title">💰 Fare Calculator</div>
+        
+        <div class="form-group">
+            <input type="number" placeholder="Enter Distance (KM)" min="1" value="1">
+        </div>
+        
+        <button type="button">Calculate Fare</button>
+        <div class="result-text">Estimated Fare: ₹28</div>
+    </div>
 
 </body>
 </html>
